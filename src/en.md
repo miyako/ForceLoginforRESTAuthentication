@@ -100,8 +100,10 @@ There are multiple approaches to implementing the authentify() function, dependi
 If the previous configuration exposed the REST server without defining an access group or filtering requests in the "On REST Authentication" database method, this behavior can be reproduced by granting full access to the entire REST API:
 
 ```4d
-Class extends DataStoreImplementation exposed Function authentify() : Boolean return
-                         Session.setPrivileges("Administrator")
+Class extends DataStoreImplementation
+
+exposed Function authentify() : Boolean
+  return Session.setPrivileges("Administrator")
 ```
 
 In this example:
@@ -117,14 +119,16 @@ In this example:
 If a group of 4D users with Read/Write is defined in the legacy configuration access to the REST API, this behavior can be reproduced in the new mode by checking credentials and granting full access to members of the defined group:
 
 ```4d
-Class extends DataStoreImplementation exposed Function authentify($identifier : Text; $pwd : Text) : Boolean
-If ($identifier#"")
+Class extends DataStoreImplementation
+
+exposed Function authentify($identifier : Text; $pwd : Text) : Boolean
+  If ($identifier#"")
     If (Validate password($identifier; $pwd))
-                If (User in group($identifier; "RestAccess"))
-                return Session.setPrivileges("Administrator")
-                End if
+      If (User in group($identifier; "RestAccess"))
+        return Session.setPrivileges("Administrator")
+      End if
     End if
-End if
+  End if
 ```
 
 In this example:
