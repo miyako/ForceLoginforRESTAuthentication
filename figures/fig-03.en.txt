@@ -1,0 +1,30 @@
+testpassword - Structure Settings
+General Interface Compiler Database Backup Client-server
+web
+sal.
+PHP
+Security
+Configuration Options ()
+Options (I!)
+Log (type)
+Log (backup)
+Web Services Web Features
+Publishing
+NOTE: This service is only active on 4D Developer Professional and 4D Server.
+Expose as REST server
+Access
+Activate REST authentication through ds.authentify() function
+This setting is only taken into account
+en the 4D password access system is
+activated
+Design
+has been assigned a password) and the database method "On
+REST Authentication"
+joes not exist.
+Read/Writ
+Qodly Studio
+NOTE: Qodly Studio requires the WebAdmin server
+Enable access to Qodly Studio
+2
+Reset to factory settings
+Cancel

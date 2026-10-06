@@ -1,0 +1,22 @@
+File
+Edit
+View
+“privileges
+"privilege": "none",
+"includes": []
+1,
+"roles": [],
+“permissions”: {
+"allowed": [
+3
+8
+"type": "datastore”,
+“read
+["none"],
+"create": ["none"],
+"update": ["none"],
+"drop": ["none"],
+“execute”
+["none"],
+"promote": ["none"]
+“forceLogin": true

@@ -1,0 +1,48 @@
+(B Save
+POST
+http://127.0.0.1:80/rest/Company/?$method=update
+Params
+Authorization
+Headers (9)
+Body
+Pre-request Script
+Tests
+Settings
+Cookies
+@none @ form-data x-www-form-urlencoded @raw @ binary JSON v
+Beautify
+“companyName" :
+"email":
+“hello@4D.ma",
+"city"
+"Rabat",
+“createdAt":
+Body Cookies (1) Headers (8) Test Results
+@ Status: 200 0K Time: 38ms_ Size: 531B
+Save Response v
+Pretty
+Raw
+Preview
+Visualize
+JSON v
+"__STATUS": £
+"success"
+‘true
+"__KEY":
+5
+"uri":
+" /rest/Company[4]",
+5
+12025-10-1411",
+"ID": 4,
+19
+“companyName" :
+a1
+“email”
+“hello@4D.ma",
+12
+“city
+"Rabat",
+13
+“createdAt":
+14

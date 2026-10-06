@@ -1,0 +1,48 @@
+[CONFLICT] cer http:
+Posr http://127.0.0.:8
+Pos http://127.0.0.1:8
+Post http://127.0.0.1:8
+Post http://127.0.01:8
+Post http://127.0.0.1:8
+Post http://127.0.0.1:8
+eT http://127.0.01:80,
+http://127.0.0.:80/rest/Company(1)
+(B Save
+http://127.0.0.1:80/rest/Company(1)
+GET
+Params
+Authorization
+Headers (7)
+Body
+Pre-request Script
+Tests
+Settings
+Cookies
+Body Cookies (1) Headers (8) Test Results
+@ Status: 200 OK Time: 76ms Size: 553B
+Save Response v
+JSON v
+Pretty
+Raw
+Preview
+Visualize
+"Company",
+DATACLASS" :
+"Company",
+KEY"
+“4,
+TIMESTAMP"
+"2025-10-10T11:36:16.238Z",
+STAMP": 1,
+"Ip": 1,
+“companyName" :
+“OpenaI",
+“email”
+“contact@openai.com",
+10
+“city
+"San Francisco",
+a1
+“createdAt":
+"1011012025"
+12

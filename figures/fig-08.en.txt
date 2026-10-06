@@ -1,0 +1,18 @@
+http://127.0.0.1:80/rest/$catalog/hasPrivilege
+POST
+Params
+Authorization
+Headers (9)
+Body
+Pre-request Script
+Tests
+Settings
+@none @ form-data x-www-form-urlencoded @raw @ binary JSON v
+Body Cookies (1) Headers (8) Test Results
+Pretty
+Raw
+Preview
+Visualize
+JSON v
+"result":
+true

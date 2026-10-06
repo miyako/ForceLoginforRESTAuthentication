@@ -1,0 +1,32 @@
+@) tech-note
+o Preview
+Debug
+fA Save all
+Data
+settings
+Roles And Privileges
+Explorer
+Q search
+Roles
+> Poges
+> Methods
+© show inherited permissions
+> Classes
+Include a privilege
+> Debugger
+none @
+28 Roles And Privileges
+= Mod
+Q search available permissions
+© create a permission
+Create
+Update Delete ——Execut
+@ HTTP Handlers
+AccessTOCOMPANY
+4 Settings
+dsauthentity
+Company
+Jan
+Admin
+Contextual panel
+14

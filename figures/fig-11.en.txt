@@ -1,0 +1,69 @@
+GE http://127.0.0.:80/rest/Company
+(B Save
+http://127.0.0.1:80/rest/Company
+GET
+Params
+Authorization
+Headers (7)
+Body
+Pre-request Script
+Tests
+Settings
+Cookies
+Body Cookies (1) Headers (8) Test Results
+@ Status: 200 0K Time: 13ms_ Size: 965B
+Save Response
+JSON v
+Pretty
+Raw
+Preview
+Visualize
+"Company",
+"Company",
+“__Globalstamp": 6,
+"__COUNT*
+5
+KEY":
+“4,
+10
+5
+TIMESTAMP’
+"2025-10-10T11:
+16.2382",
+a1
+"__STAMP": 1,
+12
+"Ip": 1,
+13
+“companyName" :
+“OpenaI",
+14
+“email”
+"contact@openai.com",
+15
+"city":
+"San Francisco",
+16
+“createdAt":
+"10!
+12025"
+a7
+3,
+18
+19
+"__KEY":
+20
+5
+TIMESTAMP":
+"2025-10-13T12:
+157.1982",
+21
+5
+STAMP’
+22
+"Ip": 2,
+23
+“companyName": null,
+24
+"email":
+nfo@globalindustries.com",
