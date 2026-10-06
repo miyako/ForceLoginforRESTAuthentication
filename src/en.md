@@ -237,9 +237,9 @@ A 4D Client license is consumed **as soon as (and only when)** the Session.setPr
 - **Dynamic Allocation**: Licenses are dynamically allocated during the first HTTP/REST request from a user (specifically when Session.setPrivileges() is called during authentication). Whether the developer connects with a heavy client (Client/Server desktop) or a web browser client, the same licenses (4D Client) are consumed.
 - **License Attachment**: Once assigned, the license remains attached to the user session for its entire duration. The license is bound to that specific session and cannot be transferred or shared with other users.
 - **License Release:** A license is automatically released under the following conditions:
-- Session timeout: If no REST request is received during the session timeout period (default minimum of 1 hour), the license is automatically freed
-- Server restart: The license is released immediately when 4D Server is restarted
-- User logout: A session license is also released if a ‘logout’ action is triggered by the end user through a Qodly Page interface (using Qodly Renderer).
+    - Session timeout: If no REST request is received during the session timeout period (default minimum of 1 hour), the license is automatically freed
+    - Server restart: The license is released immediately when 4D Server is restarted
+    - User logout: A session license is also released if a ‘logout’ action is triggered by the end user through a Qodly Page interface (using Qodly Renderer).
 - **No License Sharing :** A REST license cannot be used simultaneously by multiple users. Each licensed session requires its own dedicated license from the available pool.
 
 ## Roles and Privileges (roles.json)
@@ -275,7 +275,7 @@ Available actions are related to the target resource:
 
 ### The roles.json File
 
-When creating a project, a default roles.json file is created at the following location: **<project folder>/Project/Sources/**
+When creating a project, a default roles.json file is created at the following location: **&lt;project folder&gt;/Project/Sources/**
 
 For the highest level of security, the "none" privilege is assigned to all permissions in the datastore, thus data access on the whole ds object is disabled by default.
 
@@ -396,7 +396,13 @@ The first step in working with a Force Login-enabled REST API is to authenticate
 
 ![](fig-05)
 
-In this example, postman is used for sending requests, the request needs to be configured as follows: **Method:** POST **URL:** http://localhost/rest/$catalog/authentify **Body:**
+In this example, postman is used for sending requests, the request needs to be configured as follows:
+
+**Method:** POST
+
+**URL:** http://localhost/rest/$catalog/authentify
+
+**Body:**
 
 - Select **raw** format
 - Choose **JSON** from the dropdown
@@ -542,8 +548,8 @@ For these examples, the following roles.json configuration is used:
 **Privilege Hierarchy**
 
 - The "Admin" privilege includes the "AccessTOCOMPANY" privilege, meaning:
-- A user with "Admin" privilege automatically has access to everything "AccessTOCOMPANY" provides
-- A user with only "AccessTOCOMPANY" privilege cannot execute admin-specific methods like ds.hasPrivilege() or ds.getPrivileges()
+    - A user with "Admin" privilege automatically has access to everything "AccessTOCOMPANY" provides
+    - A user with only "AccessTOCOMPANY" privilege cannot execute admin-specific methods like ds.hasPrivilege() or ds.getPrivileges()
 
 ### Using Custom DataStore Functions
 
@@ -581,7 +587,9 @@ Since the authenticated session has "Admin" privilege, the method returns true.
 
 The request needs to be configured as follows:
 
-**Method:** POST **URL:** http://localhost/rest/$catalog/getPrivileges
+**Method:** POST
+
+**URL:** http://localhost/rest/$catalog/getPrivileges
 
 In the roles.json file, this function is configured as:
 
@@ -613,7 +621,9 @@ Once authenticated with the "Admin" privilege (which includes "AccessTOCOMPANY")
 
 This example demonstrates how to retrieve all records from the **Company** dataclass using a REST request.
 
-**Method:** GET **URL:** http://localhost/rest/Company
+**Method:** GET
+
+**URL:** http://localhost/rest/Company
 
 ![](fig-11)
 
@@ -625,7 +635,9 @@ This example demonstrates how to retrieve a specific **Company** entity by its p
 
 The request targets the record whose key (or ID) is **1** in the **Company** dataclass.
 
-**Method:** GET **URL:** http://localhost/rest/Company(1)
+**Method:** GET
+
+**URL:** http://localhost/rest/Company(1)
 
 ![](fig-12)
 
@@ -637,7 +649,11 @@ In addition to standard REST queries, data can be retrieved by calling exposed d
 
 **Request in Postman**
 
-**Method:** POST **URL:** http://localhost/rest/Company/getCompanyByName **Body:**
+**Method:** POST
+
+**URL:** http://localhost/rest/Company/getCompanyByName
+
+**Body:**
 
 ```json
 ["Innovatech"]
@@ -675,7 +691,9 @@ After authentication with the "Admin" privilege, new Company entities can be cre
 
 **Request**
 
-**Method:** POST **URL:** http://127.0.0.1:80/rest/Company/?$method=update
+**Method:** POST
+
+**URL:** http://127.0.0.1:80/rest/Company/?$method=update
 
 **Body:**
 
@@ -719,7 +737,9 @@ After authentication with the "Admin" privilege, new Company entities can be cre
 
 **Request in Postman**
 
-**Method:** POST **URL:** http://127.0.0.1:80/rest/Company/?$method=update
+**Method:** POST
+
+**URL:** http://127.0.0.1:80/rest/Company/?$method=update
 
 **Body:**
 
@@ -741,7 +761,9 @@ The user can delete Company entities because the **drop** permission is granted 
 
 **Request**
 
-**Method:** POST **URL:** http://localhost/rest/Company(2)?$method=delete
+**Method:** POST
+
+**URL:** http://localhost/rest/Company(2)?$method=delete
 
 ![](fig-17)
 

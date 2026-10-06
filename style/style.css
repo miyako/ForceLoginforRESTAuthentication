@@ -25,9 +25,11 @@ html {
 body { margin: 0; }
 
 p { margin: 0 0 0.6em; text-align: justify; line-break: strict; }
+/* Justified CJK lines get stretched before long unbreakable identifiers (e.g. Session.setPrivileges()) */
+:lang(ja) p { text-align: start; }
 strong { font-weight: 600; }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   color: var(--accent, #2f5496);
   font-weight: 600;
   line-height: 1.4;
@@ -36,6 +38,7 @@ h1, h2, h3, h4 {
 h2 { font-size: 13pt; margin: 1.6em 0 0.6em; }
 h3 { font-size: 12pt; margin: 1.3em 0 0.5em; }
 h4 { font-size: 11pt; margin: 1.1em 0 0.4em; }
+h5 { font-size: 10.5pt; margin: 1em 0 0.4em; }
 
 /* Cover */
 .cover {
