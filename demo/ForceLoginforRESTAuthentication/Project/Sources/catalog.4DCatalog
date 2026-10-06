@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="ForceLoginforRESTAuthentication" uuid="F2E1C8A2A76841079679709748171025" collation_locale="en">
+	<schema name="DEFAULT_SCHEMA"/>
+	<table name="Company" uuid="091A2BD3E62242A38EE483B429DF78CB" id="1">
+		<field name="ID" uuid="057E10D5761C47D3A2C7B6AE6B224966" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="companyName" uuid="50500AE438EA452BB7B0A91CA7D66BB6" type="10" limiting_length="255" id="2"/>
+		<field name="email" uuid="DEBE94B3B5834A2C9F73C830B9233402" type="10" limiting_length="255" id="3"/>
+		<field name="city" uuid="5FDDFCABC0D24AC5A840C34F000421C0" type="10" limiting_length="255" id="4"/>
+		<field name="createdAt" uuid="DC9DD1CF11D84FDE9C6C4365F05363CC" type="8" id="5"/>
+		<primary_key field_name="ID" field_uuid="057E10D5761C47D3A2C7B6AE6B224966"/>
+	</table>
+	<index kind="regular" unique_keys="true" uuid="0E904D49ED3243EB8B8A57F3C25BA440" type="7">
+		<field_ref uuid="057E10D5761C47D3A2C7B6AE6B224966" name="ID">
+			<table_ref uuid="091A2BD3E62242A38EE483B429DF78CB" name="Company"/>
+		</field_ref>
+	</index>
+	<base_extra>
+		<journal_file journal_file_enabled="false"/>
+	</base_extra>
+</base>
