@@ -1,0 +1,40 @@
+[CONFLICT] cer http:
+POST http://127.0.0. x
+Pos http://127.0.0.1:8
+Post http://127.0.0.1:8
+Post http://127.0.01:8
+Post http://127.0.0.1:8
+Post http://127.0.0.1:8
+cer
+200,
+iP http://127.0.0.:80/rest/$catalog/getPrivileges
+(B Save
+http://127.0.0.1:80/rest/$catalog/getPrivileges
+POST
+Params
+Authorization
+Headers (8)
+Body
+Pre-request Script
+Tests
+Settings
+Cookies
+Query Params
+Bulk Edit
+Key
+Value
+Body Cookies (1) Headers (8) Test Results
+@ Status: 401 Unauthorized Time: 21ms Size: 460 B
+Save Response v
+Pretty
+Raw
+Preview
+Visualize
+JSON v
+"__ERROR™
+"message"
+"You need to be logged in to perform this request.",
+“componentSignature":
+“dbmg",
+“errCode"
+1651.

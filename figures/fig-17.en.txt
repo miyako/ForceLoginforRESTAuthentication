@@ -1,0 +1,26 @@
+(B Save
+http://127.0.0.1:80/rest/Company(2)?$method=delete
+POST
+http://127.0.0.1:80/rest/Company(2)?$method=delete
+Params
+Authorization
+Headers (9)
+Body
+Pre-request Script
+Tests
+Settings
+Cookies
+@none @ form-data © x-www-form-urlencoded @raw ©@ binary JSON
+Beautify
+4
+Body Cookies (1) Headers (8) Test Results
+@ Status: 200 0K Time: 23ms_ Size: 381B
+Save Response v
+JSON v
+Pretty
+Raw
+Preview
+Visualize
+true,
+"__WEBFORM
+“stamp": 1

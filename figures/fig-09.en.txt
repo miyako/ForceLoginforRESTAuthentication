@@ -1,0 +1,26 @@
+iP http://127.0.0.:80/rest/$catalog/getPrivileges
+(B Save
+http://127.0.0.1:80/rest/$catalog/getPrivileges
+POST
+Params
+Authorization
+Headers (8)
+Body
+Pre-request Script
+Tests
+Settings
+Cookies
+Query Params
+Key
+Value
+Bulk Edit
+Body Cookies (1) Headers (8) Test Results
+@ Status: 200 OK Time: 4.42s Size: 367B
+Save Response v
+JSON v
+Pretty
+Raw
+Preview
+Visualize
+“result
+"admin",

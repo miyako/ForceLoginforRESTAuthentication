@@ -1,0 +1,4 @@
+v exposed Function getCompanyByName ($name
+Text)
+return This. query("companyName
+$name) . toCollection()

@@ -52,12 +52,68 @@ def line_items(page):
                 continue
             items.append({"kind": "line", "x": round(x0), "y0": y0, "y1": y1, "x1": x1,
                           "spans": spans, "text": "".join(s["text"] for s in spans)})
+    items = merge_rows(merge_markers(items))
     for info in page.get_image_info(xrefs=True):
         x0, y0, x1, y1 = info["bbox"]
         items.append({"kind": "image", "y0": y0, "y1": y1, "xref": info["xref"],
                       "width_pt": x1 - x0})
     items.sort(key=lambda it: (it["y0"], it.get("x", 0)))
     return items
+
+
+def merge_markers(items):
+    """Join a bullet-marker-only line to the text line on the same row.
+    Word often places the glyph slightly below the text, which would sort the text first."""
+    def marker_only(it):
+        if re.fullmatch(r"\s*\d+\.\s*", it["text"]):
+            return True
+        return all(font_of(s) in MARKERS | STRIP_FONTS for s in it["spans"] if s["text"].strip()) \
+            and any(font_of(s) in MARKERS for s in it["spans"])
+    out, used = [], set()
+    for i, m in enumerate(items):
+        if i in used:
+            continue
+        if marker_only(m):
+            cy = (m["y0"] + m["y1"]) / 2
+            for j, t in enumerate(items):
+                if j != i and j not in used and not marker_only(t) and t["x"] > m["x"] \
+                        and t["x"] - m["x1"] < 30 and abs((t["y0"] + t["y1"]) / 2 - cy) < 3:
+                    used.add(j)
+                    num = re.fullmatch(r"\s*(\d+)\.\s*", m["text"])
+                    m = {**m, "ordered": int(num.group(1)) if num else None, "y0": min(m["y0"], t["y0"]), "y1": max(m["y1"], t["y1"]), "x1": t["x1"],
+                         "spans": m["spans"] + t["spans"], "text": m["text"] + t["text"]}
+                    break
+        out.append(m)
+    return out
+
+
+def text_x(it):
+    """Left x of the first non-blank span (Word code blocks indent with tab runs)."""
+    return next((round(s["bbox"][0]) for s in it["spans"] if s["text"].strip()), it["x"])
+
+
+def merge_rows(items):
+    """Merge whitespace-only fragments with the other fragments on the same row.
+    Table cells (all non-blank) are left as separate items."""
+    rows = []
+    for it in sorted(items, key=lambda it: (it["y0"], it["x"])):
+        if rows and abs(rows[-1][0]["y0"] - it["y0"]) < 1.5:
+            rows[-1].append(it)
+        else:
+            rows.append([it])
+    out = []
+    for row in rows:
+        cells = CFG["table"]["size"] and any(
+            round(max(s["size"] for s in it["spans"]), 1) == CFG["table"]["size"] for it in row)
+        if len(row) > 1 and not cells:
+            row.sort(key=lambda it: it["x"])
+            spans = [s for it in row for s in it["spans"]]
+            out.append({"kind": "line", "x": row[0]["x"], "ordered": row[0].get("ordered"), "y0": min(it["y0"] for it in row),
+                        "y1": max(it["y1"] for it in row), "x1": max(it["x1"] for it in row),
+                        "spans": spans, "text": "".join(s["text"] for s in spans)})
+        else:
+            out.extend(row)
+    return out
 
 
 def font_of(span):
@@ -72,6 +128,11 @@ def is_code_line(item, body_x):
     if any((s["color"] in CODE_COLORS or is_code_font(s)) and s["text"].strip() for s in item["spans"]):
         return True
     return item["x"] >= body_x + CFG["code"]["indent"]
+
+
+def all_code(item):
+    spans = [s for s in item["spans"] if s["text"].strip()]
+    return bool(spans) and all(s["color"] in CODE_COLORS or is_code_font(s) for s in spans)
 
 
 def is_heading(fonts, size):
@@ -125,12 +186,12 @@ def code_lang(lines):
     return "4d"
 
 
-def code_line_text(item, min_x):
+def code_line_text(item, stops):
     raw = "".join(s["text"] for s in item["spans"]).rstrip()
-    stripped = raw.lstrip(" ")
-    spaces = len(raw) - len(stripped)
-    level = spaces // 4 if spaces >= 4 else (1 if item["x"] > min_x + 10 else 0)
-    return "    " * level + stripped
+    stripped = raw.lstrip(" \t")
+    spaces = len(raw.lstrip("\t")) - len(stripped)
+    level = max(i for i, x in enumerate(stops) if text_x(item) >= x - 3)
+    return "    " * level + " " * spaces + stripped
 
 
 def extract_body(doc):
@@ -152,15 +213,18 @@ def extract_body(doc):
 
     def flush_bullets():
         if state["bullets"]:
-            out.append("\n".join(f"- {join_lines(b)}" for b in state["bullets"]) + "\n")
+            out.append("\n".join(f"{b[0]} {join_lines(b[1:])}" for b in state["bullets"]) + "\n")
             state["bullets"] = []
         state["in_bullet"] = False
 
     def flush_code():
         items = state["code"]
         if items:
-            min_x = min(it["x"] for it in items if it["text"].strip())
-            lines = [code_line_text(it, min_x) if it["text"].strip() else "" for it in items]
+            stops = []
+            for x in sorted(text_x(it) for it in items if it["text"].strip()):
+                if not stops or x - stops[-1] > 3:
+                    stops.append(x)
+            lines = [code_line_text(it, stops) if it["text"].strip() else "" for it in items]
             while lines and not lines[-1]:
                 lines.pop()
             out.append(f"```{code_lang(lines)}\n" + "\n".join(lines) + "\n```\n")
@@ -192,7 +256,8 @@ def extract_body(doc):
             size = round(max(s["size"] for s in it["spans"]))
 
             if not text.strip():
-                if state["code"] and it["x"] >= body_x + CFG["code"]["indent"]:
+                if state["code"] and (it["x"] >= body_x + CFG["code"]["indent"]
+                                      or any(is_code_font(s) for s in it["spans"])):
                     state["code"].append(it)
                 else:
                     flush_code()
@@ -220,7 +285,7 @@ def extract_body(doc):
                 prev = None
                 continue
 
-            if CFG["table"]["size"] and size == CFG["table"]["size"]:  # table cells
+            if CFG["table"]["size"] and round(max(s["size"] for s in it["spans"]), 1) == CFG["table"]["size"]:  # table cells
                 flush_para(); flush_bullets(); flush_code()
                 if state["table"] and abs(state["table"][-1][0] - it["y0"]) < 3:
                     state["table"][-1][1].append(it)
@@ -229,12 +294,20 @@ def extract_body(doc):
                 continue
             flush_table()
 
-            if fonts & MARKERS:
+            sp = [s for s in it["spans"] if s["text"].strip() or font_of(s) in STRIP_FONTS]
+            if not it.get("ordered") and len(sp) > 2 and re.fullmatch(r"\d+\.", sp[0]["text"].strip()) \
+                    and font_of(sp[1]) in STRIP_FONTS:
+                it = {**it, "ordered": int(sp[0]["text"].strip()[:-1]), "spans": it["spans"][it["spans"].index(sp[0]):]}
+            if fonts & MARKERS or it.get("ordered"):
                 flush_para(); flush_code()
                 state["in_bullet"] = True
-                rest = "".join(s["text"] for s in it["spans"]
-                               if font_of(s) not in MARKERS | STRIP_FONTS)
-                state["bullets"].append([rest] if rest.strip() else [])
+                spans = [s for s in it["spans"] if font_of(s) not in MARKERS | STRIP_FONTS]
+                prefix = "-"
+                if it.get("ordered"):
+                    prefix = f"{it['ordered']}."
+                    spans = spans[1:]
+                rest = inline_md(spans)
+                state["bullets"].append([prefix] + ([rest] if rest.strip() else []))
                 prev = it
                 continue
 
@@ -244,7 +317,7 @@ def extract_body(doc):
                 prev = it
                 continue
 
-            if it["x"] != body_x and is_code_line(it, body_x):
+            if is_code_line(it, body_x) and (it["x"] != body_x or all_code(it)):
                 flush_para(); flush_bullets()
                 state["code"].append(it)
                 prev = it

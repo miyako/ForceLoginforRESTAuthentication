@@ -1,5 +1,56 @@
 {
   "$comment": "Document-specific settings. Run `make inspect` and review; see tools/config.py for all keys and defaults.",
   "source_lang": "en",
-  "target_lang": "ja"
+  "target_lang": "ja",
+  "page_size": "letter",
+  "accent_color": "#2f5496",
+  "cover": {
+    "page": 1,
+    "lines": 3
+  },
+  "skip_pages": [
+    1,
+    2,
+    3
+  ],
+  "footer_y": 713,
+  "heading": {
+    "fonts": [
+      "HelveticaNeue-Medium"
+    ],
+    "min_size": 12,
+    "levels_by_x": {
+      "72": 2,
+      "90": 3,
+      "108": 4,
+      "126": 5
+    },
+    "default_level": 2
+  },
+  "code": {
+    "colors": [
+      "#0000ff"
+    ],
+    "fonts": [
+      "SegoeUIHistoric",
+      "Courier",
+      "Mono",
+      "Menlo",
+      "Consolas"
+    ],
+    "indent": 9999
+  },
+  "bullets": {
+    "fonts": [
+      "SymbolMT",
+      "Wingdings-Regular"
+    ]
+  },
+  "caption": {
+    "italic": true,
+    "min_x": 9999
+  },
+  "table": {
+    "size": 10.6
+  }
 }

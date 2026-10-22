@@ -1,0 +1,35 @@
+He http://127.0.0.:80/rest/$catalog
+(B Save
+POST
+http://127.0.0.1:80/rest/Company/getCompanyByName
+Params
+Authorization
+Headers (9)
+Body ©
+Pre-request Script
+Tests
+Settings
+Cookies
+@none @ form-data © x-www-form-urlencoded
+@raw @binary JSON v
+Beautify
+["Innovatech"]
+Body Cookies (1) Headers (8) Test Results
+@ Status: 200 OK Time: 39ms_ Size: 456B
+Save Response v
+Pretty
+Raw
+Preview
+Visualize
+JSON
+"result":
+"ID": 3,
+“companyName"
+"Innovatech",
+"email":
+“hello@innovatech.ma*,
+"city":
+"Marrakech",
+“createdAt":
+19
+a1

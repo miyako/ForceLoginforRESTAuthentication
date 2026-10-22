@@ -1,0 +1,19 @@
+{
+	"tables": {
+		"Company": {
+			"color": {
+				"red": 255,
+				"green": 255,
+				"blue": 255,
+				"alpha": 0
+			},
+			"coordinates": {
+				"left": 547,
+				"top": 20,
+				"width": 287,
+				"height": 186.33203125
+			},
+			"displayable_fields_count": 6
+		}
+	}
+}

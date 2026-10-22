@@ -1,0 +1,17 @@
+Class extends DataStoreImplementation
+vy exposed Function authentify (Scredentiels
+Object)
+Boolean
+v If (Sidentifier#{})
+v If (Validate password ($credentiels.name;
+v I£ (User in group($credentiels.name; "RestAccess"))
+return Session.
+End if
+End if
+v exposed Function hasPrivilege (Snom
+Text)
+Boolean
+return Session. hasPrivilege($nom)
+v exposed Function getPrivileges ()
+Collection
+return Session. getPrivileges()

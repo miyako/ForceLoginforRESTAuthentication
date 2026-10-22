@@ -1,0 +1,45 @@
+POST
+http://127.0.0.1:80/rest/Company/?$method=update
+Params @
+Authorization
+Headers (9)
+Body
+Pre-request Script
+Tests
+Settings
+Cookies
+@none @ form-data © x-www-form-urlencoded @raw © binary
+JSON v
+Beautify
+“companyName": “Innovatechoo",
+“email
+“hello@innovatech.ma",
+"city": "Marrakech",
+“createdAt":
+jody Cookies (1) Headers (8) Test Results
+@ Status: 401 Unauthorized Time: 16ms_ Size: 640 B
+Save Response v
+Pretty
+Raw
+Preview
+Visualize
+JSON v
+"__KEY":
+3
+5
+4,
+uri
+5
+‘rest/Company[3]",
+"__ERROR":
+"message":
+“Error code: 1608 (dbmg)\nNo permission to update for the \"companyName\" attribute in the \"Company\"
+dataclass\nDatabase Engine\nDatabase Engine\ntask -9, name:
+"REST Handler:
+“componentSignature"
+“dbmg",
+“errCode"
+1608
+19
+a1
+12

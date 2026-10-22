@@ -1,0 +1,14 @@
+Class extends DataStoreImplementation
+v exposed Function authentify (Scredentiels
+Object)
+Boolean
+TRACE
+v If (Sidentifier#{})
+v If (Validate $credentiels.password))
+If (User in "RestAccess"))
+return Session. setPrivileges("Administrator")
+End if
+10
+11
+End if
+19>

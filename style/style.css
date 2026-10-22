@@ -25,9 +25,11 @@ html {
 body { margin: 0; }
 
 p { margin: 0 0 0.6em; text-align: justify; line-break: strict; }
+/* Justified CJK lines get stretched before long unbreakable identifiers (e.g. Session.setPrivileges()) */
+:lang(ja) p { text-align: start; }
 strong { font-weight: 600; }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   color: var(--accent, #2f5496);
   font-weight: 600;
   line-height: 1.4;
@@ -36,6 +38,7 @@ h1, h2, h3, h4 {
 h2 { font-size: 13pt; margin: 1.6em 0 0.6em; }
 h3 { font-size: 12pt; margin: 1.3em 0 0.5em; }
 h4 { font-size: 11pt; margin: 1.1em 0 0.4em; }
+h5 { font-size: 10.5pt; margin: 1em 0 0.4em; }
 
 /* Cover */
 .cover {
@@ -99,6 +102,9 @@ figcaption {
 
 /* Tables */
 table { border-collapse: collapse; margin: 0.4em auto 1em; font-size: 10pt; }
-th, td { border-bottom: 1px solid #ccc; padding: 0.25em 1.2em; }
-th { text-align: left; border-bottom: 1.5px solid #888; }
-td:last-child, th:last-child { text-align: right; }
+th, td { border-bottom: 1px solid #ccc; padding: 0.25em 0.6em; vertical-align: top; text-align: left; }
+th { border-bottom: 1.5px solid #888; }
+
+/* Callouts ("Important", "Security Warning") */
+blockquote { margin: 0.6em 0; padding: 0.4em 0.8em; background: #dbe9fb; font-size: 10pt; font-style: italic; }
+blockquote p { margin: 0; }

@@ -1,0 +1,80 @@
+{
+	"forceLogin": true,
+	"permissions": {
+		"allowed": [
+			{
+				"applyTo": "Company",
+				"type": "dataclass",
+				"read": [
+					"AccessTOCOMPANY"
+				],
+				"create": [
+					"AccessTOCOMPANY"
+				],
+				"drop": [
+					"AccessTOCOMPANY"
+				]
+			},
+			{
+				"applyTo": "Company.getCompanyByName",
+				"type": "method",
+				"execute": [
+					"AccessTOCOMPANY"
+				],
+				"promote": [
+					"AccessTOCOMPANY"
+				]
+			},
+			{
+				"applyTo": "ds",
+				"type": "datastore",
+				"read": [
+					"none"
+				],
+				"create": [
+					"none"
+				],
+				"update": [
+					"none"
+				],
+				"drop": [
+					"none"
+				],
+				"execute": [
+					"none"
+				]
+			},
+			{
+				"applyTo": "ds.hasPrivilege",
+				"type": "method",
+				"execute": [
+					"Admin"
+				]
+			},
+			{
+				"applyTo": "ds.getPrivileges",
+				"type": "method",
+				"execute": [
+					"Admin"
+				]
+			}
+		]
+	},
+	"privileges": [
+		{
+			"privilege": "AccessTOCOMPANY",
+			"includes": []
+		},
+		{
+			"privilege": "none",
+			"includes": []
+		},
+		{
+			"privilege": "Admin",
+			"includes": [
+				"AccessTOCOMPANY"
+			]
+		}
+	],
+	"roles": []
+}
