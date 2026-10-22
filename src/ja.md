@@ -46,8 +46,8 @@
 
 既存のプロジェクトを移行するには：
 
-1. 設定 → Web → Web機能 を開きます
-2. 「Activate REST authentication through ds.authentify() function」ボタンをクリックします
+1. ストラクチャー設定 → Web → Web機能 を開きます
+2. 「ds.authentify() 関数を通してのREST認証を有効化」ボタンをクリックします
 
 ![](fig-03)
 
@@ -57,7 +57,7 @@
 - **レガシー認証の無効化**：**On REST Authentication**データベースメソッドをシステムフォルダーに移動します（無効化された状態）
 - **セキュリティ設定の作成**：Sourcesフォルダーに**roles.json**ファイルを生成し（存在しない場合）、forceLogin: trueとデフォルトの"none"権限を設定します
 
-> **重要**：**roles.json**ファイルを編集して"forceLogin": trueを追加するだけでは、データベースの更新には**不十分**です。移行を正しく完了するには、**「Activate REST authentication through ds.authentify()** **function」**ボタンを**必ず**クリックしてください。
+> **重要**：**roles.json**ファイルを編集して"forceLogin": trueを追加するだけでは、データベースの更新には**不十分**です。移行を正しく完了するには、**「ds.authentify() 関数を通してのREST認証を有効化」**ボタンを**必ず**クリックしてください。
 
 ## 強制ログインの仕組み
 

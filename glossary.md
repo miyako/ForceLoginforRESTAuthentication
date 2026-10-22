@@ -44,7 +44,7 @@ Full-width `（）` and `：` in prose. First occurrence of a technical term: �
 | resource | リソース | |
 | database method | データベースメソッド | |
 | Structure Settings | ストラクチャー設定 | |
-| Settings → Web → Web Features | 設定 → Web → Web機能 | UI path; screenshot fig-03 is English |
+| Settings → Web → Web Features | ストラクチャー設定 → Web → Web機能 | UI path, as in the Japanese screenshot fig-03-ja.png |
 | web user session | Webユーザーセッション | |
 | 4D Client license | 4Dクライアントライセンス | |
 | primary key | プライマリーキー | |
@@ -57,11 +57,11 @@ Full-width `（）` and `：` in prose. First occurrence of a technical term: �
 | Force Login (mode) | 強制ログイン（モード） | Official 4D docs (REST/authUsers); first occurrence 強制ログイン（Force Login） |
 | guest session | ゲストセッション | 「ゲスト」Webユーザーセッション |
 | descriptive REST requests | 記述的RESTリクエスト | Official 4D docs |
-| credentials | 資格情報 | |
+| credentials | 資格情報 | Confirmed: developer.4d.com/docs/ja/WebServer/authentication |
 | authenticate / authentication | 認証する / 認証 | |
 | authorization | 認可 | |
 | sign in / log in / log out | サインイン / ログイン / ログアウト | Kept as in source |
-| promote (itself) | 昇格（させる） | The action name `promote` stays in English |
+| promote (itself) | 昇格（させる） | Confirmed: developer.4d.com/docs/ja/API/SessionClass#promote. The action name `promote` stays in English |
 | locking privilege ("none") | ロック用の権限 | |
 | legacy | レガシー（な） | |
 | secure-by-default | セキュア・バイ・デフォルト | |
@@ -71,13 +71,13 @@ Full-width `（）` and `：` in prose. First occurrence of a technical term: �
 | Method / URL / Body (request) | メソッド / URL / ボディ | Postman request fields |
 | What happens | 処理の流れ | |
 | heavy client | ヘビークライアント | |
-| "Activate REST authentication through ds.authentify() function" | kept in English | Button label matches the English screenshot (fig-03) |
+| "Activate REST authentication through ds.authentify() function" | ds.authentify() 関数を通してのREST認証を有効化 | Button label, verbatim from the Japanese UI (keep the space after `()`) |
 
 ## Proper nouns in examples
 
 | English | 日本語 | Notes |
 |---|---|---|
-| Qodly, Qodly Renderer, Postman | (unchanged) | Product names |
+| Qodly, Qodly Studio, Qodly Renderer, Postman | (unchanged) | Product names. Qodly Studio (browser IDE) is English-only, so its screenshots stay as is |
 | Company (dataclass), User (dataclass/table) | (unchanged) | Code identifiers |
 | AccessTOCOMPANY, Admin, Administrator, none, RestAccess, userAccess | (unchanged) | Privilege/group names in code |
 | Innovatech, Rabat, Marrakech, john | (unchanged) | Sample data; may be localised in Phase 4 |
